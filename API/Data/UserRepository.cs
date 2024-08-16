@@ -10,6 +10,7 @@ namespace API.Data;
 
 public class UserRepository(DataContext context, IMapper mapper) : IUserRepository
 {
+     private readonly ILogger<UserRepository> logger;
     public async Task<MemberDto?> GetMembeAsync(string username)
     {
         return await context.Users
@@ -44,10 +45,20 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
         .SingleOrDefaultAsync(x=>x.UserName==username);
     }
 
-    public async Task<bool> SaveAllAsync()
+   public async Task<bool> SaveAllAsync()
+{
+    try
     {
         return await context.SaveChangesAsync() > 0;
     }
+    catch (DbUpdateException ex)
+    {
+        // Log the exception message and inner exception
+        logger.LogError(ex, "An error occurred while saving changes to the database.");
+        throw; // Re-throw the exception after logging
+    }
+}
+
 
     public void Update(AppUser user)
     {
