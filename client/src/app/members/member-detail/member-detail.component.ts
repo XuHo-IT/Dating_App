@@ -30,7 +30,7 @@ export class MemberDetailComponent implements OnInit {
       next:member => {
         this.member = member;
         member.photos.map(p =>{
-          this.images.push(new ImageItem({src:member.photoUrl, thumb:member.photoUrl}))
+          this.images.push(new ImageItem({src:p.url, thumb:p.url}))
         })
       } 
     })
