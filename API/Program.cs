@@ -1,7 +1,7 @@
-
-using API;
 using API.Data;
 using API.Extensions;
+using API.Helpers;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -12,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddIdentityServices(builder.Configuration);
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+
 
 var app = builder.Build();
 
