@@ -27,7 +27,7 @@
             <img class="me-2" src="{{accountServices.currentUser()?.photoUrl|| './assets/user.png'}}"
              alt="user main image">
             <a dropdownToggle class="dropdown-toogle text-light text-decoration-none">
-                Welcome {{accountServices.currentUser()?.username | titlecase}} <i class="fa-solid fa-sort-down"></i>
+                Welcome {{accountServices.currentUser()?.knownAs}} <i class="fa-solid fa-sort-down"></i>
             </a>
             <div *dropdownMenu class="dropdown-menu">
                 <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>
